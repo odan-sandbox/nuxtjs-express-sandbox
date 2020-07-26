@@ -1,0 +1,22 @@
+service:
+  name: nuxtjs-express-sandbox
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-northeast-1
+  logs:
+    restApi: true
+
+functions:
+  handler:
+    handler: dist/handler.handler
+    timeout: 30
+    memorySize: 2048
+    events:
+      - http:
+          path: '/'
+          method: get
+      - http:
+          path: '{proxy+}'
+          method: get
