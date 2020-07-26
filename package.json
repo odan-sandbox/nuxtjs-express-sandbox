@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt-ts build",
+    "prebuild": "rm -rf dist .nuxt",
+    "build": "run-p build:*",
+    "build:nuxt": "nuxt-ts build",
+    "build:lambda": "tsc -p tsconfig.lambda.json",
     "start": "nuxt-ts start",
     "export": "nuxt-ts export",
     "serve": "nuxt-ts serve",
@@ -13,6 +16,7 @@
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.10",
+    "express": "^4.17.1",
     "nuxt": "^2.13.0"
   },
   "devDependencies": {
@@ -20,8 +24,10 @@
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "^2.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@types/express": "^4.17.7",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.2.0",
-    "eslint-plugin-nuxt": "^1.0.0"
+    "eslint-plugin-nuxt": "^1.0.0",
+    "npm-run-all": "^4.1.5"
   }
 }
